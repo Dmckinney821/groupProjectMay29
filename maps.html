@@ -4,25 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Health Score</title>
+    <link rel="stylesheet" type='text/css' href="maps.css">
+
 </head>
-<body>
+<body class='french'>
     
-<h1>My First Google Map</h1>
+<h1 class='top'>Mysophobia</h1>
 
-<div id="googleMap" style="width:100%;height:400px;"></div>
+<button><input class='boxtext' type="text" value='address'></button>
+<form> 
+    <div>
+        <label for="HS">Lowest Health Score Acceptable</label>
+        <input class='boxtext' id="HS" type="text" value="'100'">
+        <input type="submit" value="Send">
+    </div>
+</form>
 
+<div class ='theMap' id="googleMap" style="width:33%;height:300px;"></div>
 <script>
 function myMap() {
 var mapProp= {
-    center:new google.maps.LatLng(33.7503835,-84.2332542),
+    center:new google.maps.LatLng(36.99772, -79.04197),
     zoom:10,
 };
 var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 }
 </script>
-
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVR2uRZUFdke1dVJZbkwj3X1eUeN0PSCY&callback=myMap"></script>
+<div>
+    <p>The List of Places to Avoid</p>
+</div>
+<p>making sure this is connected for git</p>
+<div>
+    <p>Alternatives or places that are ok to eat at</p>
+</div>
 
+
+<footer>Patent Pending ️©️</footer>
+<script src="maps.js"></script>
 </body>
 </html>

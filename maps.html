@@ -18,10 +18,54 @@
             <a href = "#" class ="btn btn-default btn-lg" role = "button">Authors</a>
             <!-- link to a page that describes what's going on with this webpage -->
             <a href = "#"><input type = "button" value = "More Information" class = "btn btn-info"></a>
+    </div>
         </p>
-        <div id="googleMap" style="width:60%;height:200px;">
-            
+        <div class="container">
+        <div class="row"> 
+            <div id="googleMap" style="width:60%;height:200px;"></div>
+
+            <br>
+            <br>
+
+            <div class="container col-sm-3 col-md-6 col-lg-6">
+
+                <!-- get results to populate in this table -->
+                <!-- make this table appear dynamically after input is recieved -->
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <td class="text-center"colspan="8">Offenders</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        
+                            <th class="col-md-3"></td>
+                            <th class="text-center">Address</td> 
+                            <th class="text-center">Score</td>
+                        </tr>
+                        <tr>
+                            <td><a href="link to site's website if it exists?">Restaurant Name*</a></td>
+                            <td>123 blah blah avenue</td>
+                            <td>36</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+        <!-- move this to the right side of the google map -->
+        <div class="form-group">
+                <label for="usr">Zip Code:</label>
+                <input type="text" class="form-control" id="usr">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Minimum Acceptable Score:</label>
+                <!-- add a dropdown menu -->
+                <input type="password" class="form-control" id="pwd">
+        </div>   
         </div>
+
+    
 
 <script>
 function myMap() {

@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="Scripts/bootstrap.css">
     <title>Document</title>
 </head>
-<body>
+<body style = "background-color:rgb(195, 211, 209)">
     
     <div class ="container">
         <div class = "page-header">
@@ -17,53 +17,63 @@
             <!-- link to a second page about us -->
             <a href = "#" class ="btn btn-default btn-lg" role = "button">Authors</a>
             <!-- link to a page that describes what's going on with this webpage -->
-            <a href = "#"><input type = "button" value = "More Information" class = "btn btn-info"></a>
-    </div>
+            <a href = "#" class="btn btn-default btn-md" role="button">More Information</a>
         </p>
-        <div class="container">
-        <div class="row"> 
-            <div id="googleMap" style="width:60%;height:200px;"></div>
-
-            <br>
-            <br>
-
-            <div class="container col-sm-3 col-md-6 col-lg-6">
-
-                <!-- get results to populate in this table -->
-                <!-- make this table appear dynamically after input is recieved -->
-                <table class="table table-bordered table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <td class="text-center"colspan="8">Offenders</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        
-                            <th class="col-md-3"></td>
-                            <th class="text-center">Address</td> 
-                            <th class="text-center">Score</td>
-                        </tr>
-                        <tr>
-                            <td><a href="link to site's website if it exists?">Restaurant Name*</a></td>
-                            <td>123 blah blah avenue</td>
-                            <td>36</td>
-                        </tr>
-                    </tbody>
-                </table>
+        
+    <div class="container">
+        <div class ="row">
+            <!-- height should change when the Offenders Table is inserted dynamically -->
+            <div id="googleMap" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="width:50%;height:200px;">
             </div>
-        </div> 
-        <!-- move this to the right side of the google map -->
-        <div class="form-group">
-                <label for="usr">Zip Code:</label>
-                <input type="text" class="form-control" id="usr">
-              </div>
-              <div class="form-group">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <img alt = "OBP" style = "width:55%; height:55%; padding:5px;" src ="../images/oak-brewpub.jpg">
+            </div>
+        </div>
+    </div>
+
+        <br>
+        <br>
+
+    <div class="container">
+        <div class="col-sm-3 col-md-6 col-lg-6">
+
+            <!-- get results to populate in this table -->
+            <!-- make this table appear dynamically after input is recieved -->
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <td class="text-center"colspan="8">Offenders</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="col-md-3"></td>
+                        <th class="text-center">Address</td> 
+                        <th class="text-center">Score</td>
+                    </tr>
+                    <tr>
+                        <td><a href="link to site's website if it exists?">Restaurant Name*</a></td>
+                        <td>123 blah blah avenue</td> 
+                        <td>36</td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+
+    <div class="containter">
+          <!-- move this to the right side of the google map -->
+          <div class="form-group col-xs-2 col-sm-2 col-md-4 col-lg-4">
+              <label for="usr">Location:</label>
+              <input type="text" class="form-control" id="usr" placeholder="Zip Code...">
+            </div>
+            <div class="form-group col-xs-2 col-sm-2 col-md-4 col-lg-4">
                 <label for="pwd">Minimum Acceptable Score:</label>
                 <!-- add a dropdown menu -->
-                <input type="password" class="form-control" id="pwd">
-        </div>   
-        </div>
+                <input type="text" placeholder ="Select..."class="form-control" id="pwd">
+            </div>   
+    </div>      
+            
+       
 
     
 

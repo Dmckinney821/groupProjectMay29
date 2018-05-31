@@ -2303,7 +2303,7 @@ const counties = [
     score: "100"
    },
    {
-    name: "Action Ministries of Athens \"Our Daily Bread\91,
+    name: "Action Ministries of Athens \"Our Daily Bread\"",
     address: "355 Pulaski St Athens GA, 30601",
     score: "100"
    },
@@ -4903,7 +4903,7 @@ const counties = [
     score: "100"
    },
    {
-    name: "Action Ministries of Athens \"Our Daily Bread\91,
+    name: "Action Ministries of Athens \"Our Daily Bread\"",
     address: "355 Pulaski St Athens GA, 30601",
     score: "100"
    },

@@ -45,8 +45,10 @@
                         <td class="text-center"colspan="8">Offenders</td>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
+                <tbody data-offender-table>
+                    <!-- Temp changes to above line: added data label -->
+                    <!-- Temp changes: commented section below -->
+                    <!-- <tr>
                         <th class="col-md-3"></td>
                         <th class="text-center">Address</td>
                         <th class="text-center">Score</td>
@@ -55,7 +57,8 @@
                         <td><a href="link to site's website if it exists?">Restaurant Name*</a></td>
                         <td>123 blah blah avenue</td>
                         <td>36</td>
-                    </tr>
+                    </tr> -->
+                    <!-- Temp changes: commented section above -->
                 </tbody>
             </table>
     </div>
@@ -64,12 +67,15 @@
           <!-- move this to the right side of the google map -->
           <div class="form-group col-xs-2 col-sm-2 col-md-4 col-lg-4">
               <label for="usr">Location:</label>
-              <input type="text" class="form-control" id="usr" placeholder="Zip Code...">
+              <input type="text" class="form-control" id="usr" placeholder="Zip Code..." value="30620" data-address-input>
+              <!-- Temp changes on above line: added data label, added default value-->
             </div>
             <div class="form-group col-xs-2 col-sm-2 col-md-4 col-lg-4">
                 <label for="pwd">Minimum Acceptable Score:</label>
                 <!-- add a dropdown menu -->
-                <input type="text" placeholder ="Select..."class="form-control" id="pwd">
+                <input type="text" placeholder ="Select..."class="form-control" id="pwd" value="94" data-health-score>
+                <!-- Temp changes on above line: added data label, added default value-->
+
             </div>
             <button type="submit" data-submit>Submit</button>
     </div>
@@ -78,6 +84,9 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVR2uRZUFdke1dVJZbkwj3X1eUeN0PSCY&callback=initMap" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Temp changes -->
+    <script src="Scripts/counties.js"></script>
+    <!-- Temp changes -->
     <script src="Scripts/constants.js"></script>
     <script src="Scripts/index.js"></script>
 </body>

@@ -1,0 +1,16 @@
+html, body {
+    height:100%;
+    width:100%;
+}
+.french {
+    background-image: url('shutter.jpg');
+
+.top {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: cornflowerblue;
+}
+
+.boxtext {
+    text-align: right;
+}

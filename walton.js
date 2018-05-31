@@ -1,4 +1,4 @@
-var walton =
+var walton =[
   {
     "name": "ABBEY HOSPICE",
     "score": 100,
@@ -839,3 +839,4 @@ var walton =
     "score": "",
     "address": "195 MLK JR. BLVD. MONROE GA, 30655﨟﨟￿﨟﨟﨟￿﨟﨟﨟￿﨟﨟﨟￿﨟﨟﨟￿"
   }
+]

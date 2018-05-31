@@ -1,4 +1,4 @@
-var oglethorpe = 
+var oglethorpe = [
   {
     "name": "Blazers of Lexington LLC",
     "score": 95,
@@ -79,3 +79,4 @@ var oglethorpe =
     "score": 93,
     "address": "777 Athens Rd Ste.  Lexington GA, 30648"
   }
+]

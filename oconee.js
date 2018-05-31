@@ -1,4 +1,4 @@
-var oconee =
+var oconee =[
   {
     "name": "aTHENS ACADEMY",
     "score": "",
@@ -494,3 +494,4 @@ var oconee =
     "score": 94,
     "address": "1013 Park Place Drive Watkinsville GA, 30677"
   }
+]

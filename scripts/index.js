@@ -22,33 +22,48 @@ function createAddressSelectList(data) {
   $ul.appendTo($asc);
 }
 
-function getCoordinatesAndDoStuff(address, stuffToDo) {
+function getGeocodeDataAndDoShit(address, shitToDo) {
   $.get(GEO_BASE_URL, {
         address: address,
         key: GEO_API_KEY})
-  .then(data => {
-    if (data.results[1]) {
-      createAddressSelectList(data.results);
-    };
-    var location = data.results[0].geometry.location
-    stuffToDo(location.lat, location.lng);
-    })
+    .then(shitToDo)
+  // .then(data => {
+  //   if (data.results[1]) {
+  //     createAddressSelectList(data.results);
+  //   };
+  //   var location = data.results[0].geometry.location
+  //   stuffToDo(location.lat, location.lng);
+  //   })
   .catch(error => {
     console.log(error);
   });
 }
 
 function initMap(latValue=33.7676338,lngValue=-84.5606888) {
-  var mapDiv = document.querySelector(MAP_CONTAINER);
-  map = new google.maps.Map(mapDiv, {
-    center: {lat: latValue, lng: lngValue},
-    zoom: 8
-  });
-  // var marker = new google.maps.Marker({position: {lat: latValue, lng: lngValue},
-  //   map: map});
+  var startingZipCode = '30305';
+  getGeocodeDataAndDoShit(startingZipCode, drawMap);
 }
 
-function setMapMarker(latValue, lngValue) {
+function drawMap(data) {
+  var latValue = data.results[0].geometry.location.lat;
+  var lngValue = data.results[0].geometry.location.lng;
+  var mapDiv = document.querySelector(MAP_CONTAINER);
+  map = new google.maps.Map(
+    mapDiv,
+    {
+      center:
+      {
+        lat: latValue,
+        lng: lngValue
+      },
+      zoom: 8
+    }
+  );
+}
+
+function setMapMarker(data) {
+  var latValue = data.results[0].geometry.location.lat;
+  var lngValue = data.results[0].geometry.location.lng;
   var marker = new google.maps.Marker(
     {
       position: {
@@ -77,7 +92,7 @@ function updateOffenderResults(restaurantArray) {
     var $td3 = $('<td>').text(restaurant.score).appendTo($tr);
     $tr.appendTo($table);
 
-    getCoordinatesAndDoStuff(restaurant.address, setMapMarker);
+    getGeocodeDataAndDoShit(restaurant.address, setMapMarker);
   });
 }
 
@@ -92,16 +107,15 @@ function getOffenders(zipCode, minScore) {
 }
 
 function getZipCode(addressString) {
+  var result = null;
+  var regex = /\d{5}$/;
   try {
-    var regex = /\d{5}$/;
-    var result = regex.exec(addressString)[0]
-    return result;
+    result = regex.exec(addressString)[0]
   }
   catch(error) {
-    // console.error(error);
     console.error('Zip code not found');
-    return null;
   }
+  return result;
 }
 
 function submitRequest(event) {
@@ -109,8 +123,8 @@ function submitRequest(event) {
   var zipCode = document.querySelector(ADDRESS_INPUT).value;
   var minScore = document.querySelector(MIN_SCORE).value;
   if (zipCode) {
-    getCoordinatesAndDoStuff(zipCode, initMap);
     var results = getOffenders(zipCode, minScore);
+    getGeocodeDataAndDoShit(zipCode, drawMap);
     updateOffenderResults(results);
   }
 }

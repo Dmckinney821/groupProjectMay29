@@ -8,25 +8,25 @@
     <title>Document</title>
 </head>
 <body style = "background-color:rgb(195, 211, 209)">
-    
+
     <div class ="container">
         <div class = "page-header">
             <h1>Mysophobia</h1>
-        </div> 
+        </div>
         <p>
             <!-- link to a second page about us -->
             <a href = "#" class ="btn btn-default btn-lg" role = "button">Authors</a>
             <!-- link to a page that describes what's going on with this webpage -->
             <a href = "#" class="btn btn-default btn-lg" role="button">More Information</a>
         </p>
-        
+
     <div class="container">
         <div class ="row">
             <!-- height should change when the Offenders Table is inserted dynamically -->
-            <div id="googleMap" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="width:50%;height:200px;">
+            <div id="googleMap" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="width:50%;height:200px;" data-map>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <img alt = "OBP" style = "width:55%; height:55%; padding:5px;" src ="../images/oak-brewpub.jpg">
+                <img alt = "OBP" style = "width:55%; height:55%; padding:5px;" src ="images/oak-brewpub.jpg">
             </div>
         </div>
     </div>
@@ -48,19 +48,19 @@
                 <tbody>
                     <tr>
                         <th class="col-md-3"></td>
-                        <th class="text-center">Address</td> 
+                        <th class="text-center">Address</td>
                         <th class="text-center">Score</td>
                     </tr>
                     <tr>
                         <td><a href="link to site's website if it exists?">Restaurant Name*</a></td>
-                        <td>123 blah blah avenue</td> 
+                        <td>123 blah blah avenue</td>
                         <td>36</td>
                     </tr>
                 </tbody>
             </table>
     </div>
 
-    <div class="containter">
+    <div class="container">
           <!-- move this to the right side of the google map -->
           <div class="form-group col-xs-2 col-sm-2 col-md-4 col-lg-4">
               <label for="usr">Location:</label>
@@ -70,31 +70,15 @@
                 <label for="pwd">Minimum Acceptable Score:</label>
                 <!-- add a dropdown menu -->
                 <input type="text" placeholder ="Select..."class="form-control" id="pwd">
-            </div>   
-    </div>      
-            
-       
+            </div>
+            <button type="submit" data-submit>Submit</button>
+    </div>
 
-    
 
-<script>
-function myMap() {
-var mapProp= {
-    center:new google.maps.LatLng(33.7503835,-84.2332542),
-    zoom:10,
-};
-var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-}
-</script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVR2uRZUFdke1dVJZbkwj3X1eUeN0PSCY&callback=myMap">
-</script>
-
-<script src = "../../../JQuery/jquery-3.3.1.js">
-</script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
-</script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVR2uRZUFdke1dVJZbkwj3X1eUeN0PSCY&callback=initMap" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="Scripts/constants.js"></script>
+    <script src="Scripts/index.js"></script>
 </body>
 </html>

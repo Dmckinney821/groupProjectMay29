@@ -1,16 +1,3 @@
-// Div where map will be created
-const MAP_CONTAINER = '[data-map]';
-// Div where a ul and li items will be created for multiple addresses returned
-// from Google
-const ADDR_SELECT_CONTAINER = '[data-address-select]';
-// Submit button
-const SUBMIT = '[data-submit]';
-// Text field where user types in zip code or address
-const ADDRESS_INPUT = '[data-address-input]';
-
-const GEO_BASE_URL = 'https://maps.googleapis.com/maps/api/geocode/json?';
-const GEO_API_KEY = 'AIzaSyBAXU-M8aiZ0Huw-2FcR0mESGdEACgBxJA';
-
 function createAddressSelectList(data) {
   var $asc = $(ADDR_SELECT_CONTAINER);
   var $ul = $('<ul>');

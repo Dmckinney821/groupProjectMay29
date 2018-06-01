@@ -16,9 +16,9 @@ const HEALTH_SCORE = "[data-health-score]";
 
 
 // Class strings
-const RESTAURANT_CLASS = 'col-md-3 col-lg-3 text-center';
-const ADDRESS_CLASS = 'col-md-8 col-lg-8 text-center';
-const SCORE_CLASS = 'col-md-1 col-lg-1 text-center';
+const RESTAURANT_CLASS = 'text-center restaurantWidth';
+const ADDRESS_CLASS = 'text-center addressWidth';
+const SCORE_CLASS = 'text-center scoreWidth';
 
 
 

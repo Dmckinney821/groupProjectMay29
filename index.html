@@ -10,40 +10,63 @@
 </head>
 <body style = "background-color:rgb(195, 211, 209)">
 
-    <div class ="container">
-        <div class = "page-header">
-            <h1>Mysophobia</h1>
-        </div>
-        <p>
-            <!-- link to a second page about us -->
-            <a href = "#" class ="btn btn-default btn-lg" role = "button">Authors</a>
-            <!-- link to a page that describes what's going on with this webpage -->
-            <a href = "#" class="btn btn-default btn-lg" role="button">More Information</a>
-        </p>
+    <!-- Highest level container for the entire page -->
+<div class ="container-fluid">
+    <!-- separate the main content from the images to the right-hand side -->
+<div class="row">
 
-    <div class="container">
-        <div class ="row">
-            <!-- height should change when the Offenders Table is inserted dynamically -->
-            <div id="googleMap" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="width:50%;height:400px;" data-map>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <img alt = "OBP" style = "width:55%; height:55%; padding:5px;" src ="images/oak-brewpub.jpg">
-            </div>
-        </div>
+    <div class="col-lg-9 col-md-9">
+    <div class = "page-header">
+        <h1>Mysophobia</h1>
     </div>
+    <p>
+        <!-- link to a second page about us -->
+        <a href = "#" class ="btn btn-default btn-lg" role = "button">Authors</a>
+        <!-- link to a page that describes what's going on with this webpage -->
+        <a href = "#" class="btn btn-default btn-lg" role="button">More Information</a>
+    </p>
 
-        <br>
-        <br>
+<div class="container">
+    <div class ="row">
+        <!-- height should change when the Offenders Table is inserted dynamically -->
+        <div id="googleMap" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="width:50%;height:400px;" data-map>
+        </div>
+        <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <img alt = "OBP" style = "width:55%; height:55%; padding:5px;" src ="images/oak-brewpub.jpg"> -->
+        
+        
+            <!-- move this to the right side of the google map -->
+            <div class="form-group">
+                <label for="usr">Location:</label>
+                <input type="text" class="form-control" id="usr" placeholder="Zip Code..." value="30620" data-address-input>
+            
+  
+              <div class="form-group col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                  <label for="pwd">Minimum Acceptable Score:</label>
+                  <!-- add a dropdown menu -->
+                  <select type="text" placeholder ="Select..."class="form-control" id="pwd" value="94" data-health-score>
+                     
+                  </select>
+              
+              <!-- Move this button to a better spot -->
+              <button type="submit" data-submit>Submit</button>
+            </div>
+            </div>
+        </div>
+</div>
 
-    <div class="container">
-        <div class="col-sm-3 col-md-6 col-lg-6">
+    <br>
+    <br>
+
+    <div class="container-fluid">
+        <div class="hidden-sm hidden-xs col-md-12 col-lg-12">
 
             <!-- get results to populate in this table -->
             <!-- make this table appear dynamically after input is recieved -->
             <table class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
-                        <td class="text-center"colspan="8">Offenders</td>
+                        <td class="text-center"colspan="12">Offenders</td>
                     </tr>
                 </thead>
                 <tbody data-offender-table>
@@ -61,30 +84,29 @@
                     <!-- Sample of what will be injected by javascript -->
                 </tbody>
             </table>
+         </div>
+    </div>
+    <!-- image container should be placed after the div below -->
     </div>
 
-    <div class="container">
-          <!-- move this to the right side of the google map -->
-          <div class="form-group col-xs-2 col-sm-2 col-md-4 col-lg-4">
-              <label for="usr">Location:</label>
-              <input type="text" class="form-control" id="usr" placeholder="Zip Code..." value="30620" data-address-input>
-            </div>
-            <div class="form-group col-xs-2 col-sm-2 col-md-4 col-lg-4">
-                <label for="pwd">Minimum Acceptable Score:</label>
-                <!-- add a dropdown menu -->
-                <input type="text" placeholder ="Select..."class="form-control" id="pwd" value="94" data-health-score>
-
-            </div>
-            <button type="submit" data-submit>Submit</button>
+    <!-- image container -->
+    <div class = "col-lg-3 col-md-3">
+        <img alt="#1highest score">
+        <img alt="#2 highest score">
+        <img alt="#3 highest score">
     </div>
 
+</div>
+
+    
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVR2uRZUFdke1dVJZbkwj3X1eUeN0PSCY&callback=initMap" async defer></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="scripts/counties.js"></script>
     <script src="scripts/mapstyle.js"></script>
     <script src="scripts/constants.js"></script>
     <script src="scripts/index.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVR2uRZUFdke1dVJZbkwj3X1eUeN0PSCY&callback=initMap" async defer></script>
 </body>
 </html>

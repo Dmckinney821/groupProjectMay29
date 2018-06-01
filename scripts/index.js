@@ -89,17 +89,20 @@ function drawMap(data) {
 function setMapMarker(data) {
   var latValue = data.results[0].geometry.location.lat;
   var lngValue = data.results[0].geometry.location.lng;
+  // var score = 
   var marker = new google.maps.Marker(
     {
       position: {
         lat: latValue,
         lng: lngValue
       },
-      map: map,
-      icon: {
-        url: 'favicon-96x96.png',
-        scaledSize: new google.maps.Size(iconDimension, iconDimension)
-      }
+      map: map
+      // ,icon: {
+      //   url: 'favicon-96x96.png',
+      //   scaledSize: new google.maps.Size(iconDimension, iconDimension)
+      // }
+      ,icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+      ,animation: google.maps.Animation.DROP
     });
 }
 

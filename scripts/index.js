@@ -36,7 +36,28 @@ function getGeocodeDataAndDoShit(address, shitToDo) {
   //   })
   .catch(error => {
     console.log(error);
-  });
+  })
+  ;
+}
+
+function getCurrentLocation() {
+  var position = navigator.geolocation;
+  if (position) {
+    navigator.geolocation.getCurrentPosition(position => {console.log(position);});
+  } else {
+    console.log('"Geolocation is not supported by this browser.');
+  }
+}
+
+function getGeolocationDataAndDoShit(shitToDo) {
+  $.get(GEOLOCATION_BASE_URL, {
+        key: GEOLOCATION_API_KEY,
+        considerIp: true
+    })
+    .then(shitToDo)
+    .catch(error => {
+      console.log(error);
+    });
 }
 
 function initMap(latValue=33.7676338,lngValue=-84.5606888) {
@@ -59,6 +80,9 @@ function drawMap(data) {
       zoom: 8
     }
   );
+  var sw = data.results[0].geometry.bounds.southwest;
+  var ne = data.results[0].geometry.bounds.northeast;
+  map.fitBounds(new google.maps.LatLngBounds(sw, ne));
 }
 
 function setMapMarker(data) {

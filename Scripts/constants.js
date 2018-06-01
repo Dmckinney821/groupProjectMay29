@@ -13,5 +13,8 @@ const MIN_SCORE = '[data-health-score]';
 const OFFENDER_TABLE = '[data-offender-table]'
 
 const GEO_BASE_URL = 'https://maps.googleapis.com/maps/api/geocode/json?';
-// This API is from Lisa's Google developer console
+const GEOLOCATION_BASE_URL = 'https://www.googleapis.com/geolocation/v1/geolocate?'
+
+// This API key is from Lisa's Google developer console
 const GEO_API_KEY = 'AIzaSyBAXU-M8aiZ0Huw-2FcR0mESGdEACgBxJA';
+const GEOLOCATION_API_KEY = GEO_API_KEY;

@@ -1,0 +1,20 @@
+/* Controls the size of the populated table sections */
+
+.restaurantWidth {
+    width: 25%;
+}
+.addressWidth {
+    width: 67%;
+}
+.scoreWidth {
+    width: 8%;
+}
+
+.imageContent {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    
+    height: auto;
+    width: 100%; 
+}

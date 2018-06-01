@@ -119,9 +119,9 @@ function updateOffenderResults(restaurantArray) {
   var $table = $(OFFENDER_TABLE);
   $table.empty();
   var $tr1 = $('<tr>');
-  var $th1 = $('<th>').addClass('col-md-3').text('Restaurant').appendTo($tr1);
-  var $th2 = $('<th>').addClass('text-center').text('Address').appendTo($tr1);
-  var $th3 = $('<th>').addClass('text-center').text('Score').appendTo($tr1);
+  var $th1 = $('<th>').addClass(RESTAURANT_CLASS).text('Restaurant').appendTo($tr1);
+  var $th2 = $('<th>').addClass(ADDRESS_CLASS).text('Address').appendTo($tr1);
+  var $th3 = $('<th>').addClass(SCORE_CLASS).text('Score').appendTo($tr1);
   $tr1.appendTo($table);
   restaurantArray.forEach(restaurant => {
     var $tr = $('<tr>');
@@ -162,6 +162,15 @@ function getZipCode(addressString) {
   return result;
 }
 
+function populateHealthScore() {
+  var $selectElement = $(HEALTH_SCORE);
+  for (let index = 100; index > 0; index--) {
+    var options = $("<option>");
+    options.text(index)
+    options.appendTo($selectElement);
+  }
+}
+
 function submitRequest(event) {
   event.preventDefault();
   var zipCode = $(ADDRESS_INPUT).val();
@@ -175,6 +184,7 @@ function submitRequest(event) {
 
 function main() {
   document.querySelector(SUBMIT).addEventListener('click', submitRequest);
+  populateHealthScore();
 
   if (TESTING) {
     $(ADDRESS_INPUT).val('30607');

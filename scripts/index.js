@@ -7,7 +7,6 @@ function createAddressSelectList(data) {
   var $ul = $('<ul>');
   data.forEach(result => {
     var formattedAddress = result.formatted_address;
-    // console.log(formattedAddress);
     var $li = $('<li>');
     var $a = $('<a>');
     $a.text(formattedAddress);
@@ -92,30 +91,18 @@ function setMapMarker(data, restaurantData) {
   var score = restaurantData.score;
   var minScore = $(MIN_SCORE).val();
   var scoreRange = minScore - resultsMinScore;
-  console.log('s: ' + score + ' m: ' + minScore + ' r: ' + scoreRange);
   // icons from https://sites.google.com/site/gmapsdevelopment/
   var iconFile;
-  // if (score > scoreRange / 3 * 2) {
-  //   iconFile = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
-  //   console.log('green');
-  // } else if (score > scoreRange / 3 * 1) {
-  //   iconFile = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
-  //   console.log('yellow');
-  // } else {
-  //   iconFile = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
-  //   console.log('red');
-  // }
-  if (score > scoreRange / 3 * 2) {
+  var scoreRangeBreakpoint = scoreRange / 3;
+  var greenLowEnd = minScore - scoreRangeBreakpoint;
+  var yellowLowEnd = greenLowEnd - scoreRangeBreakpoint;
+  if (score > greenLowEnd) {
     iconFile = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
-    console.log('green');
-  } else if (score > scoreRange / 3 * 1) {
+  } else if (score > yellowLowEnd) {
     iconFile = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
-    console.log('yellow');
   } else {
     iconFile = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
-    console.log('red');
   }
-  console.log(restaurantData.name + ": " + restaurantData.score + ", " + iconFile);
   var marker = new google.maps.Marker(
     {
       position: {
@@ -136,12 +123,8 @@ function updateOffenderResults(restaurantArray) {
   var $th2 = $('<th>').addClass('text-center').text('Address').appendTo($tr1);
   var $th3 = $('<th>').addClass('text-center').text('Score').appendTo($tr1);
   $tr1.appendTo($table);
-
   restaurantArray.forEach(restaurant => {
     var $tr = $('<tr>');
-    // var $td1 = $('<td>');
-    // var $a = $('<a>').text(restaurant.name).attr('href', '#').appendTo($td1);
-    // $td1.appendTo($tr);
     var $td1 = $('<td>').text(restaurant.name).appendTo($tr);
     var $td2 = $('<td>').text(restaurant.address).appendTo($tr);
     var $td3 = $('<td>').text(restaurant.score).appendTo($tr);
@@ -173,7 +156,8 @@ function getZipCode(addressString) {
     result = regex.exec(addressString)[0]
   }
   catch(error) {
-    // console.error('Zip code not found');
+    console.log(addressString);
+    console.error('Zip code not found');
   }
   return result;
 }

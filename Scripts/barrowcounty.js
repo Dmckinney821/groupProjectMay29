@@ -1,3 +1,5 @@
+const counties = [
+
 var green = [
   {
     name: "AISHIA'S SEAFOOD AND WINGS",
@@ -369,7 +371,7 @@ var green = [
     score: 93,
     address: "2301 S. MAIN ST. GREENSBORO GA, 30642"
   }
-]
+],
 var jackson = [
   {
     name: "Arby's AES Southeast LLC",
@@ -1136,7 +1138,7 @@ var jackson = [
     score: "",
     address: "4853 U.S. 129 NORTH JEFFERSON GA, 30549"
   }
-]
+],
 var barrow = 
   [
   {
@@ -2256,7 +2258,7 @@ var barrow =
     address: "2301 S. MAIN ST. GREENSBORO GA, 30642"
   }
 ]
-
+,
 var clarke = [
 
 
@@ -7648,7 +7650,7 @@ var clarke = [
     score: 100,
     address: "5742 HWY 29 N. DANIELSVILLE GA, 30633"
   }
-]
+],
 var oconee =[
   {
     name: "aTHENS ACADEMY",
@@ -8145,7 +8147,7 @@ var oconee =[
     score: 94,
     address: "1013 Park Place Drive Watkinsville GA, 30677"
   }
-]
+],
 var oglethorpe = [
   {
     name: "Blazers of Lexington LLC",
@@ -8227,7 +8229,7 @@ var oglethorpe = [
     score: 93,
     address: "777 Athens Rd Ste.  Lexington GA, 30648"
   }
-]
+],
 var walton =[
   {
     name: "ABBEY HOSPICE",
@@ -9263,7 +9265,4 @@ var madison = [
     address: "5742 HWY 29 N. DANIELSVILLE GA, 30633"
   }
 ]
-function getZipCode(addressString) {
-  var regex = /\d{5}$/;
-  return regex.exec(addressString)[0];
-}
+];

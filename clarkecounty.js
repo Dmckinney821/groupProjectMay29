@@ -1,7 +1,7 @@
-var clarke = 
+var clarke = [
 
-{
- "name": [
+
+ 
   {
    "name": "100 Proof",
    "address": "364 E Broad St Athens GA, 30601",
@@ -2598,4 +2598,3 @@ var clarke =
    "score": "96"
   }
  ]
-}

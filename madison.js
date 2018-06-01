@@ -1,4 +1,4 @@
-var madison = 
+var madison = [
   {
     "name": "ANGIE'S PLACE",
     "score": "",
@@ -189,3 +189,4 @@ var madison =
     "score": 100,
     "address": "5742 HWY 29 N. DANIELSVILLE GA, 30633"
   }
+]

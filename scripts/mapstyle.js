@@ -1,5 +1,3 @@
-const iconDimension = 64;
-
 const mapStyle = [
   {
     "featureType": "administrative",

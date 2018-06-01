@@ -78,6 +78,7 @@ function drawMap(data) {
         lng: lngValue
       },
       zoom: 8
+      ,styles: mapStyle
     }
   );
   var sw = data.results[0].geometry.bounds.southwest;
@@ -94,7 +95,11 @@ function setMapMarker(data) {
         lat: latValue,
         lng: lngValue
       },
-      map: map
+      map: map,
+      icon: {
+        url: 'favicon-96x96.png',
+        scaledSize: new google.maps.Size(iconDimension, iconDimension)
+      }
     });
 }
 

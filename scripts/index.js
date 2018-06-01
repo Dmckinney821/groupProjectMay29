@@ -1,4 +1,6 @@
+const TESTING = true;
 var map;
+var resultsMinScore;
 
 function createAddressSelectList(data) {
   var $asc = $(ADDR_SELECT_CONTAINER);
@@ -22,17 +24,15 @@ function createAddressSelectList(data) {
   $ul.appendTo($asc);
 }
 
-function getGeocodeDataAndDoShit(address, shitToDo) {
+function getGeocodeDataAndDoShit(address, shitToDo, shitYouNeed=null) {
   $.get(GEO_BASE_URL, {
         address: address,
         key: GEO_API_KEY})
-    .then(shitToDo)
+    .then(data => {
+      shitToDo(data, shitYouNeed);
+    })
   // .then(data => {
-  //   if (data.results[1]) {
-  //     createAddressSelectList(data.results);
-  //   };
-  //   var location = data.results[0].geometry.location
-  //   stuffToDo(location.lat, location.lng);
+  //   if (data.results[1]) {createAddressSelectList(data.results);}
   //   })
   .catch(error => {
     console.log(error);
@@ -86,23 +86,45 @@ function drawMap(data) {
   map.fitBounds(new google.maps.LatLngBounds(sw, ne));
 }
 
-function setMapMarker(data) {
+function setMapMarker(data, restaurantData) {
   var latValue = data.results[0].geometry.location.lat;
   var lngValue = data.results[0].geometry.location.lng;
-  // var score = 
+  var score = restaurantData.score;
+  var minScore = $(MIN_SCORE).val();
+  var scoreRange = minScore - resultsMinScore;
+  console.log('s: ' + score + ' m: ' + minScore + ' r: ' + scoreRange);
+  // icons from https://sites.google.com/site/gmapsdevelopment/
+  var iconFile;
+  // if (score > scoreRange / 3 * 2) {
+  //   iconFile = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
+  //   console.log('green');
+  // } else if (score > scoreRange / 3 * 1) {
+  //   iconFile = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
+  //   console.log('yellow');
+  // } else {
+  //   iconFile = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
+  //   console.log('red');
+  // }
+  if (score > scoreRange / 3 * 2) {
+    iconFile = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
+    console.log('green');
+  } else if (score > scoreRange / 3 * 1) {
+    iconFile = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
+    console.log('yellow');
+  } else {
+    iconFile = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
+    console.log('red');
+  }
+  console.log(restaurantData.name + ": " + restaurantData.score + ", " + iconFile);
   var marker = new google.maps.Marker(
     {
       position: {
         lat: latValue,
         lng: lngValue
       },
-      map: map
-      // ,icon: {
-      //   url: 'favicon-96x96.png',
-      //   scaledSize: new google.maps.Size(iconDimension, iconDimension)
-      // }
-      ,icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
-      ,animation: google.maps.Animation.DROP
+      map: map,
+      icon: iconFile,
+      animation: google.maps.Animation.DROP
     });
 }
 
@@ -117,24 +139,30 @@ function updateOffenderResults(restaurantArray) {
 
   restaurantArray.forEach(restaurant => {
     var $tr = $('<tr>');
-    var $td1 = $('<td>');
-    var $a = $('<a>').text(restaurant.name).attr('href', '#').appendTo($td1);
-    $td1.appendTo($tr);
+    // var $td1 = $('<td>');
+    // var $a = $('<a>').text(restaurant.name).attr('href', '#').appendTo($td1);
+    // $td1.appendTo($tr);
+    var $td1 = $('<td>').text(restaurant.name).appendTo($tr);
     var $td2 = $('<td>').text(restaurant.address).appendTo($tr);
     var $td3 = $('<td>').text(restaurant.score).appendTo($tr);
     $tr.appendTo($table);
-
-    getGeocodeDataAndDoShit(restaurant.address, setMapMarker);
+    getGeocodeDataAndDoShit(restaurant.address, setMapMarker, restaurant);
   });
 }
 
 function getOffenders(zipCode, minScore) {
   var results = [];
+  resultsMinScore = 100;
   counties.forEach(restaurant => {
-    if (parseInt(restaurant.score) <= minScore && getZipCode(restaurant.address) === zipCode) {
+    var score = parseInt(restaurant.score);
+    if (score <= minScore && getZipCode(restaurant.address) === zipCode) {
       results.push(restaurant);
+      if (score < resultsMinScore) {
+        resultsMinScore = score;
+      }
     }
   });
+  results.sort((a, b) => {return a.score - b.score});
   return results;
 }
 
@@ -145,16 +173,16 @@ function getZipCode(addressString) {
     result = regex.exec(addressString)[0]
   }
   catch(error) {
-    console.error('Zip code not found');
+    // console.error('Zip code not found');
   }
   return result;
 }
 
 function submitRequest(event) {
   event.preventDefault();
-  var zipCode = document.querySelector(ADDRESS_INPUT).value;
-  var minScore = document.querySelector(MIN_SCORE).value;
-  if (zipCode) {
+  var zipCode = $(ADDRESS_INPUT).val();
+  var minScore = $(MIN_SCORE).val();
+  if (zipCode && minScore) {
     var results = getOffenders(zipCode, minScore);
     getGeocodeDataAndDoShit(zipCode, drawMap);
     updateOffenderResults(results);
@@ -163,6 +191,11 @@ function submitRequest(event) {
 
 function main() {
   document.querySelector(SUBMIT).addEventListener('click', submitRequest);
+
+  if (TESTING) {
+    $(ADDRESS_INPUT).val('30607');
+    $(MIN_SCORE).val('100');
+  }
 }
 
 main();

@@ -1879,9 +1879,7 @@ const counties = [
     name: "ZAXBY'S FAULKNER FOODS DLBK",
     address: "28 EAST MAY STREET WINDER GA, 30680",
     score: "94"
-   }
-  ];
-  var green = [
+   },
    {
      name: "AISHIA'S SEAFOOD AND WINGS",
      score: 98,
@@ -2593,7 +2591,7 @@ const counties = [
     score: "90"
    },
    {
-    name: "BULLDAWG PIZZA",
+    name: "BULLDAWG PIZZA",  //lookatme
     address: "2026 SOUTH MILLEDGE ATHENS GA, 30607",
     score: "62"
    },
@@ -4846,12 +4844,7 @@ const counties = [
     name: "Zombie Coffee & Donuts",
     address: "350 East Broad Street Athens GA, 30601",
     score: "96"
-   }
-  ]
-  var clarke = [ 
- 
- 
-  
+   },
    {
     name: "100 Proof",
     address: "364 E Broad St Athens GA, 30601",
@@ -7446,9 +7439,7 @@ const counties = [
     name: "Zombie Coffee & Donuts",
     address: "350 East Broad Street Athens GA, 30601",
     score: "96"
-   }
-  ]
-  var madison = [
+   },
    {
      name: "ANGIE'S PLACE",
      score: 91,

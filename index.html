@@ -11,21 +11,34 @@
 <body style = "background-color:rgb(248, 193, 193)">
 
     <!-- Highest level container for the entire page -->
-<div class ="container-fluid">
+<div class="container-fluid">
     <!-- separate the main content from the images to the right-hand side -->
 <div class="row">
+<div class="col-lg-9 col-md-9">
+    
+    <div class="container">
+    <div class="row justify-content-between align-items-center">
 
-    <div class="col-lg-9 col-md-9">
-    <div class = "page-header">
-        <h1>Mysophobia</h1>
+        <div class="page-header row align-items-center">
+            <div>
+                <h1>Mysophobia</h1>
+            </div>
+            <div>
+                <img src="#" alt="Mysophobia logo">
+            </div>
+        </div>
+            <div>
+            <p>
+                <!-- link to a second page about us -->
+                <a href = "#"> <button type="button" class ="btn btn-default btn-sm">Authors</button></a>
+                <!-- link to a page that describes what's going on with this webpage -->
+                <a href = "#"> <button type="button" class="btn btn-default btn-sm" role="button">More Information</button></a>
+            </p>
+            </div>
+
     </div>
-    <p>
-        <!-- link to a second page about us -->
-        <a href = "#" class ="btn btn-default btn-lg" role = "button">Authors</a>
-        <!-- link to a page that describes what's going on with this webpage -->
-        <a href = "#" class="btn btn-default btn-lg" role="button">More Information</a>
-    </p>
-
+    </div>
+<br>
 <div class="container">
     <div class ="row justify-content-around align-items-center">
         <!-- height should change when the Offenders Table is inserted dynamically -->
@@ -61,7 +74,7 @@
     <br>
 
     <div class="container-fluid">
-        <div class="hidden-sm hidden-xs col-md-12 col-lg-12">
+        <div class="col-md-12 col-lg-12">
 
             <!-- get results to populate in this table -->
             <!-- make this table appear dynamically after input is recieved -->

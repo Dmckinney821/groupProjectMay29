@@ -10,11 +10,10 @@
     width: 8%;
 }
 
-.imageContent {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    
-    height: auto;
-    width: 100%; 
+.imageFit {
+    width: 100%;
+    height: 230px;
+    padding-right: 0px;
+
+   object-fit: cover;
 }

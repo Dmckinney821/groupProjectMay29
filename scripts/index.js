@@ -198,6 +198,8 @@ function showNoResultsFound() {
   var $tableHeader = $(OFFENDER_TABLE_HEADER_CELL);
   $tableHeader.text("No Results Found");
   $tableDiv.removeClass(HIDE_TABLE);
+  var $table = $(OFFENDER_TABLE);
+  $table.empty();
 }
 
 function populateHealthScore() {

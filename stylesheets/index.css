@@ -1,25 +1,32 @@
 /* Controls the font for the entire page */
 html, body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    
+
+    background-color: white;
+
     height: 100vh;
 }
 
 body button {
-    background-color: rgb(242, 252, 255);
-    color: rgb(201, 184, 142);
-    text-shadow: -1px -1px rgb(90, 122, 158);
+    /* background-color: rgb(242, 252, 255);
+    color: rgb(201, 184, 142); */
+    background-color: rgb(60,102,175);
+    color: white;
+    text-shadow: -1px -1px rgb(151,128,118);
 }
 
 @media screen and (max-width: 766px) {
     #backgroundImage {
         height: 10%;
 }
+
 .fill {
     min-height: 10vh;
     height: 20%;
 }
 }
+
+
 
 .boxShadow {
     box-shadow: 0px 0px 5px rgb(113, 111, 111);
@@ -30,9 +37,7 @@ borderRadiusNormal {
 }
 
 
-.leftSideStyle {
-    padding-left: 0px; 
-}   
+
 /* Used to center the content on the right side v2 */
 
 .infoButtons {
@@ -48,12 +53,35 @@ borderRadiusNormal {
     align-items: center;
 }
 
-/* For laying content on to of the image on the right side */
-/* Stretch column down the entire screen */
+
+
+#contentOnTop {
+    position: relative;
+    z-index: 300;
+
+    /* color: rgb(231, 212, 164); */
+    color: white;
+    text-shadow: -1px -1px rgb(151,128,118);
+}
+
+#inputs {
+    color: rgb(60,102,175);
+    /* text-shadow: -1px -1px rgb(231,212,164); */
+    text-shadow: -1px -1px white;
+}
+
+
+/*Image Controls for the left-hand side v2*/
+
+.leftSideStyle {
+    padding-left: 0px; 
+}    
+
 .fill {
     min-height: 100vh;
     height: 100%;
 }
+
 #backgroundImage {
     background-image: url("../images/restaurant1.jpg");
     
@@ -68,42 +96,57 @@ borderRadiusNormal {
     background-position: -1925px -1309px;
 
 }
+.transparentBox{
+    background: rgba(60, 102, 175, 0.3);
 
-#contentOnTop {
-    position: relative;
-    z-index: 300;
-
-    color: rgb(231, 212, 164);
-    text-shadow: -1px -1px rgb(90, 122, 158);
+    /* z-index: 200; */
 }
-
-#inputs {
-    color: rgb(210, 239, 252);
-    text-shadow: -1px -1px rgb(173, 159, 123);
-}
-
-
-/*Image Controls for the left-hand side v2*/
 .blurred-image {
     -webkit-filter: blur(1px);
     -moz-filter: blur(1px);
     -o-filter: blur(1px);
     -ms-filter: blur(1px);
     filter: blur(1px);
-  }
+}
 
-  imageSize {
-      height:100%;
-      width:300px;
+imageSize {
+    height:100%;
+    width:300px;
 
-      object-fit: cover;
-  }
+    object-fit: cover;
+}
 
 
 /* Controls the size of the bug logo on the front */
+#contentOnTop .fa-bug {
+    font-size: 41px;
+    color: white;
+}
 .fa-bug {
     font-size: 41px;
-    color: rgb(90, 122, 158);
+    color: rgb(60,102,175);
+}
+
+
+/* Table Styling */
+
+.tableHeadStyle {
+    /* background-color: rgb(242, 252, 255);
+    color: rgb(201, 184, 142); */
+    background-color: rgb(60,102,175);
+    color: white;
+    text-shadow: -1px -1px rgb(65, 88, 114);
+
+    border-radius: 4%;
+
+}
+tbody th {
+    text-decoration: underline;
+}
+
+.tableBodyStyle {
+    color: rgb(60,102,175);
+    border-color: rgb(151,128,118);
 }
 
 /* Controls the size of the populated table sections */
@@ -118,38 +161,61 @@ borderRadiusNormal {
     width: 8%;
 }
 
-/* Table Styling */
 
-.tableHeadStyle {
-    background-color: rgb(242, 252, 255);
-    color: rgb(201, 184, 142);
-    text-shadow: -1px -1px rgb(65, 88, 114);
+/* Authors Page */
+.container-fluid{
+    padding:0px;
+}
+.authorHeaderStyle {
+    text-shadow: -1px -1px rgb(231, 212, 164);
+    background-color: rgb(60,102,175);
 
-    border-radius: 4%;
+    padding-left:9px;
+    padding-top: 5px;
 
 }
-tbody th {
+
+#contentOnTop h1 {
+    text-decoration: none;
+}
+h1 {
+    color: rgb(60,102,175);
+    font-size: 200%;
     text-decoration: underline;
 }
 
-.tableBodyStyle {
-    color: rgb(90, 122, 158);
-    border-color: rgb(90, 122, 158);
+.authorHeaderStyle h1 {
+    line-height: 1.5;
+    color: white;
+    font-size: 35px;
+    text-decoration: none;
 }
+.img-fluid {
+    border-radius: 4%;
+}
+
+h1 .fa-bug {
+    font-size: 41px;
+    color: rgb(231, 212, 164);
+}
+
+
 
 
 /* Hover Effects */
 
 button:hover {
-    box-shadow: -1px 2px 4px rgb(90, 122, 158);
-}
-
-i:hover {
-
+    box-shadow: -1px 2px 4px rgb(82, 131, 216);
+    /* box-shadow: -1px 2px 4px white; */
 }
 
 
 tbody tr:hover {
     box-shadow: 0px 2px 4px rgb(184, 208, 235);
+    color: rgb(168, 146, 89);
 }
 
+button:hover {
+    transform: scale(1.04);
+    color: rgb(231, 212, 164);
+}

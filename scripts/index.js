@@ -141,6 +141,8 @@ function getGeocodeDataAndDoStuff(address, stuffToDo, stuffYouNeed=null) {
 
 function updateOffenderResults(restaurantArray) {
   var $tableDiv = $(OFFENDER_TABLE_DIV);
+  var $tableHeader = $(OFFENDER_TABLE_HEADER_CELL);
+  $tableHeader.text("Offenders");
   var $table = $(OFFENDER_TABLE);
   $table.empty();
   var $tr1 = $('<tr>');
@@ -181,9 +183,21 @@ function submitRequest(event) {
   var minScore = $(MIN_SCORE).val();
   if (zipCode && minScore) {
     var results = getOffenders(zipCode, minScore);
-    getGeocodeDataAndDoStuff(zipCode, drawMap);
-    updateOffenderResults(results);
+    console.log(results);
+    if (results[0]){
+      getGeocodeDataAndDoStuff(zipCode, drawMap);
+      updateOffenderResults(results);
+    } else {
+      showNoResultsFound();
+    }
   }
+}
+
+function showNoResultsFound() {
+  var $tableDiv = $(OFFENDER_TABLE_DIV);
+  var $tableHeader = $(OFFENDER_TABLE_HEADER_CELL);
+  $tableHeader.text("No Results Found");
+  $tableDiv.removeClass(HIDE_TABLE);
 }
 
 function populateHealthScore() {

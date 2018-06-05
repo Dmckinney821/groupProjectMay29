@@ -29,7 +29,7 @@ function getZipCode(addressString) {
 }
 
 function initMap() {
-  getGeocodeDataAndDoShit(STARTING_ZIP_CODE, drawMap);
+  getGeocodeDataAndDoStuff(STARTING_ZIP_CODE, drawMap);
 }
 
 function drawMap(data) {
@@ -55,7 +55,11 @@ function drawMap(data) {
   map.fitBounds(new google.maps.LatLngBounds(sw, ne));
 
   infoWindow = new google.maps.InfoWindow();
-  infoWindow.setOptions({pixelOffset: new google.maps.Size(0, -30)});
+  infoWindow.setOptions(
+    {
+      pixelOffset: new google.maps.Size(0, -30)
+      ,maxWidth: 220
+    });
 }
 
 function setMapMarker(data, restaurantData) {
@@ -96,19 +100,19 @@ function setMapMarker(data, restaurantData) {
     .then (data => {
       if (data.status === 'OK') {
         content = sanitizeHTML`
-        <div style="margin: 5px;">
-        <h3>${restaurantData.name}</h3>
-        <p><b>Address:</b> ${restaurantData.address}</br>
-        <b>Score:</b> ${restaurantData.score}</p>
+        <div class="info-window">
         <p><img width="200px" src="https://maps.googleapis.com/maps/api/streetview?size=300x200&location=${latValue},${lngValue}"></p>
+        <p><span class="iw-name">${restaurantData.name}</span><br/>
+        ${restaurantData.address}<br/></p>
+        <p><span class="iw-score">Score:</b> ${restaurantData.score}</span></p>
         </div>
         `;
       } else {
         content = sanitizeHTML`
-        <div style="margin: 5px;">
-        <h3>${restaurantData.name}</h3>
-        <p><b>Address:</b> ${restaurantData.address}</br>
-        <b>Score:</b> ${restaurantData.score}</p>
+        <div class="info-window">
+        <p><span class="iw-name">${restaurantData.name}</span><br/>
+        ${restaurantData.address}<br/></p>
+        <p><span class="iw-score">Score:</b> ${restaurantData.score}</span></p>
         </div>
         `;
       }
@@ -119,12 +123,12 @@ function setMapMarker(data, restaurantData) {
   });
 }
 
-function getGeocodeDataAndDoShit(address, shitToDo, shitYouNeed=null) {
+function getGeocodeDataAndDoStuff(address, stuffToDo, stuffYouNeed=null) {
   $.get(GEO_BASE_URL, {
         address: address,
         key: GEO_API_KEY})
     .then(data => {
-      shitToDo(data, shitYouNeed);
+      stuffToDo(data, stuffYouNeed);
     })
   // Future feature to allow partial address input
   // .then(data => {
@@ -136,6 +140,7 @@ function getGeocodeDataAndDoShit(address, shitToDo, shitYouNeed=null) {
 }
 
 function updateOffenderResults(restaurantArray) {
+  var $tableDiv = $(OFFENDER_TABLE_DIV);
   var $table = $(OFFENDER_TABLE);
   $table.empty();
   var $tr1 = $('<tr>');
@@ -149,8 +154,9 @@ function updateOffenderResults(restaurantArray) {
     var $td2 = $('<td>').text(restaurant.address).appendTo($tr);
     var $td3 = $('<td>').text(restaurant.score).appendTo($tr);
     $tr.appendTo($table);
-    getGeocodeDataAndDoShit(restaurant.address, setMapMarker, restaurant);
+    getGeocodeDataAndDoStuff(restaurant.address, setMapMarker, restaurant);
   });
+  $tableDiv.toggleClass(HIDE_TABLE);
 }
 
 function getOffenders(zipCode, minScore) {
@@ -171,11 +177,11 @@ function getOffenders(zipCode, minScore) {
 
 function submitRequest(event) {
   event.preventDefault();
-  var zipCode = $(ADDRESS_INPUT).val();
+  var zipCode = $(ZIP_CODE).val();
   var minScore = $(MIN_SCORE).val();
   if (zipCode && minScore) {
     var results = getOffenders(zipCode, minScore);
-    getGeocodeDataAndDoShit(zipCode, drawMap);
+    getGeocodeDataAndDoStuff(zipCode, drawMap);
     updateOffenderResults(results);
   }
 }
@@ -189,11 +195,21 @@ function populateHealthScore() {
   }
 }
 
+function populateZipCodePulldown() {
+  var $selectElement = $(ZIP_CODE);
+  zipCodes.sort().forEach(zipCode => {
+    var options = $("<option>");
+    options.text(zipCode)
+    options.appendTo($selectElement);
+  })
+}
+
 function main() {
   document.querySelector(SUBMIT).addEventListener('click', submitRequest);
+  populateZipCodePulldown();
   populateHealthScore();
 
-  const TESTING = true;
+  const TESTING = false;
   if (TESTING) {
     $(ADDRESS_INPUT).val('30607');
     $(MIN_SCORE).val('100');
@@ -201,48 +217,3 @@ function main() {
 }
 
 main();
-
-// Geolocation function. Future feature.
-// function getCurrentLocation() {
-//   var position = navigator.geolocation;
-//   if (position) {
-//     navigator.geolocation.getCurrentPosition(position => {console.log(position);});
-//   } else {
-//     console.log('"Geolocation is not supported by this browser.');
-//   }
-// }
-
-// Geolocation function. Future feature.
-// function getGeolocationDataAndDoShit(shitToDo) {
-//   $.get(GEOLOCATION_BASE_URL, {
-//         key: GEOLOCATION_API_KEY,
-//         considerIp: true
-//     })
-//     .then(shitToDo)
-//     .catch(error => {
-//       console.log(error);
-//     });
-// }
-
-// Show multiple geocoding results. Future feature to allow partial address
-// instead of just zip code input.
-// function createAddressSelectList(data) {
-//   var $asc = $(ADDR_SELECT_CONTAINER);
-//   var $ul = $('<ul>');
-//   data.forEach(result => {
-//     var formattedAddress = result.formatted_address;
-//     var $li = $('<li>');
-//     var $a = $('<a>');
-//     $a.text(formattedAddress);
-//     $a.attr('href', '#');
-//     $li.on('click', event => {
-//       event.preventDefault();
-//       $asc.text('');
-//       $(ADDRESS_INPUT).attr('value', formattedAddress);
-//       getCoordinates(formattedAddress)
-//     });
-//     $a.appendTo($li);
-//     $li.appendTo($ul);
-//   });
-//   $ul.appendTo($asc);
-// }

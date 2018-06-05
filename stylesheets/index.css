@@ -18,3 +18,16 @@
     height: auto;
     width: 100%; 
 }
+
+.info-window {
+    margin: 5px;
+    font-family: ‘Trebuchet MS’, ‘Lucida Sans Unicode’, ‘Lucida Grande’, ‘Lucida Sans’, Arial, sans-serif;
+}
+
+.iw-name {
+    font-weight: bold;
+}
+
+.iw-score {
+    font-size: 1.25em;
+}

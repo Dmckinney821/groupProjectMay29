@@ -67,7 +67,9 @@ This was the first time though where we had to merge our code with others that c
 My biggest challenge was determining how to break up the work three ways so everyone had a fair share of work to do and merge conflicts were minimized. Learning to find a git collaboration workflow was another big challenge. I'm not sure we arrived at the best way to handle merging but we managed to not lose any code and completed the project without too many headaches.
 <br>
 <br>
-JALANI CHALLENGES TBA
+### Jalani
+
+I was in charge of handling all tasks concerning the front-end components of Mysophobia. Being that this was my first time in charge of design, I was fairly nervous. However, the tools in the bootstrap API helped make the process much more effcient and easy-going. 
 <br>
 <br>
 ### Dan

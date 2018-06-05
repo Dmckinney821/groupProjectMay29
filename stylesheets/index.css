@@ -50,13 +50,19 @@ borderRadiusNormal {
     
 }
 
+.form-group {
+    width:200px;
+}
+
 .center {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
+#contentOnTop h1 {
+    font-size: 225%;
+}
 
 #contentOnTop {
     position: relative;
@@ -151,7 +157,7 @@ imageSize {
     color: rgb(201, 184, 142); */
     background-color: rgb(60,102,175);
     color: white;
-    text-shadow: -1px -1px rgb(65, 88, 114);
+    text-shadow: -1px -1px rgb(151,128,118);
 
     border-radius: 4%;
 

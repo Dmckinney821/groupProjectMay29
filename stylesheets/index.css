@@ -198,8 +198,7 @@ tbody th {
 h1 {
     color: rgb(60,102,175);
     font-size: 165%;
-    text-decoration: underline;
-    
+    text-decoration: underline;    
 }
 #authors h1{
     text-align: center;
@@ -276,7 +275,18 @@ button:hover {
 }
 
 .spin {
-    animation: spin 9s infinite ease-in;
+    animation: spin 9s infinite ease-in;  
+}
 
-   
+.info-window {
+    margin: 5px;
+    font-family: ‘Trebuchet MS’, ‘Lucida Sans Unicode’, ‘Lucida Grande’, ‘Lucida Sans’, Arial, sans-serif;
+}
+
+.iw-name {
+    font-weight: bold;
+}
+
+.iw-score {
+    font-size: 1.25em;
 }

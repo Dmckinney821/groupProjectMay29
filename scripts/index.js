@@ -200,6 +200,7 @@ function showNoResultsFound() {
   $tableDiv.removeClass(HIDE_TABLE);
   var $table = $(OFFENDER_TABLE);
   $table.empty();
+  initMap(); 
 }
 
 function populateHealthScore() {

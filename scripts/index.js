@@ -1,67 +1,35 @@
-const TESTING = true;
 var map;
+var infoWindow;
 var resultsMinScore;
 
-function createAddressSelectList(data) {
-  var $asc = $(ADDR_SELECT_CONTAINER);
-  var $ul = $('<ul>');
-  data.forEach(result => {
-    var formattedAddress = result.formatted_address;
-    var $li = $('<li>');
-    var $a = $('<a>');
-    $a.text(formattedAddress);
-    $a.attr('href', '#');
-    $li.on('click', event => {
-      event.preventDefault();
-      $asc.text('');
-      $(ADDRESS_INPUT).attr('value', formattedAddress);
-      getCoordinates(formattedAddress)
+// Escapes HTML characters in a template literal string, to prevent XSS.
+// See https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet#RULE_.231_-_HTML_Escape_Before_Inserting_Untrusted_Data_into_HTML_Element_Content
+function sanitizeHTML(strings) {
+  const entities = {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'};
+  let result = strings[0];
+  for (let i = 1; i < arguments.length; i++) {
+    result += String(arguments[i]).replace(/[&<>'"]/g, (char) => {
+      return entities[char];
     });
-    $a.appendTo($li);
-    $li.appendTo($ul);
-  });
-  $ul.appendTo($asc);
-}
-
-function getGeocodeDataAndDoShit(address, shitToDo, shitYouNeed=null) {
-  $.get(GEO_BASE_URL, {
-        address: address,
-        key: GEO_API_KEY})
-    .then(data => {
-      shitToDo(data, shitYouNeed);
-    })
-  // .then(data => {
-  //   if (data.results[1]) {createAddressSelectList(data.results);}
-  //   })
-  .catch(error => {
-    console.log(error);
-  })
-  ;
-}
-
-function getCurrentLocation() {
-  var position = navigator.geolocation;
-  if (position) {
-    navigator.geolocation.getCurrentPosition(position => {console.log(position);});
-  } else {
-    console.log('"Geolocation is not supported by this browser.');
+    result += strings[i];
   }
+  return result;
 }
 
-function getGeolocationDataAndDoShit(shitToDo) {
-  $.get(GEOLOCATION_BASE_URL, {
-        key: GEOLOCATION_API_KEY,
-        considerIp: true
-    })
-    .then(shitToDo)
-    .catch(error => {
-      console.log(error);
-    });
+function getZipCode(addressString) {
+  var result = null;
+  var regex = /\d{5}$/;
+  try {
+    result = regex.exec(addressString)[0]
+  }
+  catch(error) {
+    // console.error('Zip code not found');
+  }
+  return result;
 }
 
-function initMap(latValue=33.7676338,lngValue=-84.5606888) {
-  var startingZipCode = '30305';
-  getGeocodeDataAndDoShit(startingZipCode, drawMap);
+function initMap() {
+  getGeocodeDataAndDoStuff(STARTING_ZIP_CODE, drawMap);
 }
 
 function drawMap(data) {
@@ -77,12 +45,21 @@ function drawMap(data) {
         lng: lngValue
       },
       zoom: 8
-      ,styles: mapStyle
+      ,fullscreenControl: false
+      ,streetViewControl: false
+      ,mapTypeControl: false
     }
   );
   var sw = data.results[0].geometry.bounds.southwest;
   var ne = data.results[0].geometry.bounds.northeast;
   map.fitBounds(new google.maps.LatLngBounds(sw, ne));
+
+  infoWindow = new google.maps.InfoWindow();
+  infoWindow.setOptions(
+    {
+      pixelOffset: new google.maps.Size(0, -30)
+      ,maxWidth: 220
+    });
 }
 
 function setMapMarker(data, restaurantData) {
@@ -91,7 +68,6 @@ function setMapMarker(data, restaurantData) {
   var score = restaurantData.score;
   var minScore = $(MIN_SCORE).val();
   var scoreRange = minScore - resultsMinScore;
-  // icons from https://sites.google.com/site/gmapsdevelopment/
   var iconFile;
   var scoreRangeBreakpoint = scoreRange / 3;
   var greenLowEnd = minScore - scoreRangeBreakpoint;
@@ -103,6 +79,7 @@ function setMapMarker(data, restaurantData) {
   } else {
     iconFile = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
   }
+  // icons from https://sites.google.com/site/gmapsdevelopment/
   var marker = new google.maps.Marker(
     {
       position: {
@@ -113,9 +90,57 @@ function setMapMarker(data, restaurantData) {
       icon: iconFile,
       animation: google.maps.Animation.DROP
     });
+  marker.addListener('click', event => {
+    var locationValue = latValue + ',' + lngValue;
+    var content;
+    $.get(STREETVIEW_METADATA_URL, {
+            location: locationValue,
+            key: STREETVIEW_API_KEY}
+    )
+    .then (data => {
+      if (data.status === 'OK') {
+        content = sanitizeHTML`
+        <div class="info-window">
+        <p><img width="200px" src="https://maps.googleapis.com/maps/api/streetview?size=300x200&location=${latValue},${lngValue}"></p>
+        <p><span class="iw-name">${restaurantData.name}</span><br/>
+        ${restaurantData.address}<br/></p>
+        <p><span class="iw-score">Score:</b> ${restaurantData.score}</span></p>
+        </div>
+        `;
+      } else {
+        content = sanitizeHTML`
+        <div class="info-window">
+        <p><span class="iw-name">${restaurantData.name}</span><br/>
+        ${restaurantData.address}<br/></p>
+        <p><span class="iw-score">Score:</b> ${restaurantData.score}</span></p>
+        </div>
+        `;
+      }
+      infoWindow.setContent(content);
+      infoWindow.setPosition({lat: latValue, lng: lngValue});
+      infoWindow.open(map);
+    })
+  });
+}
+
+function getGeocodeDataAndDoStuff(address, stuffToDo, stuffYouNeed=null) {
+  $.get(GEO_BASE_URL, {
+        address: address,
+        key: GEO_API_KEY})
+    .then(data => {
+      stuffToDo(data, stuffYouNeed);
+    })
+  // Future feature to allow partial address input
+  // .then(data => {
+  //   if (data.results[1]) {createAddressSelectList(data.results);}
+  //   })
+  .catch(error => {
+    console.log(error);
+  });
 }
 
 function updateOffenderResults(restaurantArray) {
+  var $tableDiv = $(OFFENDER_TABLE_DIV);
   var $table = $(OFFENDER_TABLE);
   $table.empty();
   var $tr1 = $('<tr>');
@@ -129,8 +154,9 @@ function updateOffenderResults(restaurantArray) {
     var $td2 = $('<td>').text(restaurant.address).appendTo($tr);
     var $td3 = $('<td>').text(restaurant.score).appendTo($tr);
     $tr.appendTo($table);
-    getGeocodeDataAndDoShit(restaurant.address, setMapMarker, restaurant);
+    getGeocodeDataAndDoStuff(restaurant.address, setMapMarker, restaurant);
   });
+  $tableDiv.toggleClass(HIDE_TABLE);
 }
 
 function getOffenders(zipCode, minScore) {
@@ -149,17 +175,15 @@ function getOffenders(zipCode, minScore) {
   return results;
 }
 
-function getZipCode(addressString) {
-  var result = null;
-  var regex = /\d{5}$/;
-  try {
-    result = regex.exec(addressString)[0]
+function submitRequest(event) {
+  event.preventDefault();
+  var zipCode = $(ZIP_CODE).val();
+  var minScore = $(MIN_SCORE).val();
+  if (zipCode && minScore) {
+    var results = getOffenders(zipCode, minScore);
+    getGeocodeDataAndDoStuff(zipCode, drawMap);
+    updateOffenderResults(results);
   }
-  catch(error) {
-    console.log(addressString);
-    console.error('Zip code not found');
-  }
-  return result;
 }
 
 function populateHealthScore() {
@@ -171,21 +195,21 @@ function populateHealthScore() {
   }
 }
 
-function submitRequest(event) {
-  event.preventDefault();
-  var zipCode = $(ADDRESS_INPUT).val();
-  var minScore = $(MIN_SCORE).val();
-  if (zipCode && minScore) {
-    var results = getOffenders(zipCode, minScore);
-    getGeocodeDataAndDoShit(zipCode, drawMap);
-    updateOffenderResults(results);
-  }
+function populateZipCodePulldown() {
+  var $selectElement = $(ZIP_CODE);
+  zipCodes.sort().forEach(zipCode => {
+    var options = $("<option>");
+    options.text(zipCode)
+    options.appendTo($selectElement);
+  })
 }
 
 function main() {
   document.querySelector(SUBMIT).addEventListener('click', submitRequest);
+  populateZipCodePulldown();
   populateHealthScore();
 
+  const TESTING = false;
   if (TESTING) {
     $(ADDRESS_INPUT).val('30607');
     $(MIN_SCORE).val('100');

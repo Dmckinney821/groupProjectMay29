@@ -60,7 +60,9 @@ borderRadiusNormal {
     align-items: center;
 }
 
-
+#contentOnTop h1 {
+    font-size: 225%;
+}
 
 #contentOnTop {
     position: relative;

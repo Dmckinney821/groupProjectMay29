@@ -156,7 +156,7 @@ function updateOffenderResults(restaurantArray) {
     $tr.appendTo($table);
     getGeocodeDataAndDoStuff(restaurant.address, setMapMarker, restaurant);
   });
-  $tableDiv.toggleClass(HIDE_TABLE);
+  $tableDiv.removeClass(HIDE_TABLE);
 }
 
 function getOffenders(zipCode, minScore) {
@@ -188,7 +188,7 @@ function submitRequest(event) {
 
 function populateHealthScore() {
   var $selectElement = $(HEALTH_SCORE);
-  for (let index = 100; index > 0; index--) {
+  for (var index = 100; index > 0; index -= 5) {
     var options = $("<option>");
     options.text(index)
     options.appendTo($selectElement);

@@ -59,8 +59,10 @@ borderRadiusNormal {
     justify-content: center;
     align-items: center;
 }
-
 #contentOnTop h1 {
+    text-decoration: none;
+    color: white;
+    
     font-size: 225%;
 }
 
@@ -197,10 +199,7 @@ tbody th {
 
 }
 
-#contentOnTop h1 {
-    text-decoration: none;
-    color: white;
-}
+
 h1 {
     color: rgb(60,102,175);
     font-size: 165%;

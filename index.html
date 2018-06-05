@@ -19,7 +19,7 @@
         <div class="fill col-lg-4 col-md-4 leftSideStyle">
        
        <div id="backgroundImage" class="blurred-image"></div>
-        <div id="contentOnTop" class="container d-inline-flex flex-column align-items-center">
+        <div id="contentOnTop" class="layer container d-inline-flex flex-column align-items-center">
         <div class="d-inline-flex flex-column align-items-center">
             <div class="d-inline-flex flex-column align-items-center">   
                 <br>
@@ -27,7 +27,7 @@
                 <br>
              
                 <div>
-                <i class="fas fa-bug"></i>
+                <i class="fas fa-bug spin"></i>
                 </div>
                 <h1>Mysophobia</h1>
             </div>    
@@ -35,19 +35,19 @@
             <div id="inputs" class="d-inline-flex flex-column align-items-center">
                 <div class="form-group">
                     <label for="usr">Zip Code:</label>
-                    <input type="text" class="form-control" id="usr" placeholder="Zip Code..." data-address-input>
+                    <input type="text" class="boxShadowSubmit form-control" id="usr" placeholder="Zip Code..." data-address-input>
                 </div>
                     <!-- insert "m" logo in between inputs -->
     
                 <div class="form-group">
                     <label for="pwd">Minimum Acceptable Score:</label>
                     <!-- add a dropdown menu -->
-                    <select type="text" placeholder ="Select..."class="form-control" id="pwd" data-health-score>      
+                    <select type="text" placeholder ="Select..."class="boxShadowSubmit form-control" id="pwd" data-health-score>      
                     </select>
             </div>  
               <br>
               <!-- Move this button to a better spot -->
-              <button type="submit" class ="boxShadow borderRadiusNormal btn btn-default btn-sm;" data-submit>Submit</button>
+              <button type="submit" class ="boxShadowSubmit borderRadiusNormal btn btn-default btn-sm;" data-submit>Submit</button>
             </div>
 
         
@@ -62,13 +62,13 @@
             
                 <p class="infoButtons" style="border-radius:30%">
                     <!-- link to a second page about us -->
-                    <a href = "author.html"> <button type="button" class ="borderRadiusNormal boxShadow btn btn-default btn-sm;" >About Us</button></a>
+                    <a href = "author.html"> <button type="button" class ="borderRadiusNormal boxShadowSubmit btn btn-default btn-sm;" >About Us</button></a>
 
                     
                     <i class="fas fa-bug"></i>
                     
 
-                    <a href = "https://github.com/Dmckinney821/groupProjectMay29"> <button type="button" class="borderRadiusNormal boxShadow btn btn-default btn-sm;">More Information</button></a>
+                    <a href = "https://github.com/Dmckinney821/groupProjectMay29"> <button type="button" class="borderRadiusNormal boxShadowSubmit btn btn-default btn-sm;">More Information</button></a>
                 </p>
         
         <!-- height should change when the Offenders Table is inserted dynamically -->
@@ -81,7 +81,7 @@
 <br>
 
     <div class="container-fluid">
-        <div class="col-md-12 col-lg-12">
+        <div data-offenders class="hideTable col-md-12 col-lg-12">
 
             <!-- get results to populate in this table -->
             <!-- make this table appear dynamically after input is recieved -->

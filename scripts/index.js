@@ -77,7 +77,7 @@ function drawMap(data) {
         lng: lngValue
       },
       zoom: 8
-      // ,styles: mapStyle
+      ,styles: mapStyle
     }
   );
   var sw = data.results[0].geometry.bounds.southwest;

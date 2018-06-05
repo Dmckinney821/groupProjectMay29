@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,85 +5,96 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/index.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <title>Mysophobia</title>
 </head>
-<body style = "background-color:rgb(248, 193, 193)">
 
-    <!-- Highest level container for the entire page -->
+<link rel='shortcut icon' type='image/png' href='images/writer.png'>
+
+<body style = "background-color:rgb(245, 233, 218)">
+        <!-- Highest level container for the entire page -->
 <div class="container-fluid">
-    <!-- separate the main content from the images to the right-hand side -->
-<div class="row">
-<div class="col-lg-9 col-md-9">
-    
-    <div class="container">
-    <div class="row justify-content-between align-items-center">
-
-        <div class="page-header row align-items-center">
-            <div>
+        <!-- Separates content bewtween the eft and right sides -->
+    <div class="row">
+        <div class="fill col-lg-4 col-md-4 leftSideStyle">
+       
+       <div id="backgroundImage" class="blurred-image"></div>
+        <div id="contentOnTop" class="container d-inline-flex flex-column align-items-center">
+        <div class="d-inline-flex flex-column align-items-center">
+            <div class="d-inline-flex flex-column align-items-center">   
+                <br>
+                <br>
+                <br>
+             
+                <div>
+                <i class="fas fa-bug"></i>
+                </div>
                 <h1>Mysophobia</h1>
-            </div>
-            <div>
-                <img src="#" alt="Mysophobia logo">
-            </div>
-        </div>
-            <div>
-            <p>
-                <!-- link to a second page about us -->
-                <a href = "#"> <button type="button" class ="btn btn-default btn-sm">Authors</button></a>
-                <!-- link to a page that describes what's going on with this webpage -->
-                <a href = "#"> <button type="button" class="btn btn-default btn-sm" role="button">More Information</button></a>
-            </p>
-            </div>
-
-    </div>
-    </div>
-<br>
-<div class="container">
-    <div class ="row justify-content-around align-items-center">
-        <!-- height should change when the Offenders Table is inserted dynamically -->
-        <div id="googleMap" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="width:50%;height:400px;" data-map>
-        </div>
-        <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <img alt = "OBP" style = "width:55%; height:55%; padding:5px;" src ="images/oak-brewpub.jpg"> -->
-        
-        
-            <!-- move this to the right side of the google map -->
-            <div>
-            <div class="form-group">
-                <label for="usr">Location:</label>
-                <input type="text" class="form-control" id="usr" placeholder="Zip Code..." data-address-input>
-            </div>
-                <!-- insert "m" logo in between inputs -->
-  
-              <div class="form-group">
-                  <label for="pwd">Minimum Acceptable Score:</label>
-                  <!-- add a dropdown menu -->
-                  <select type="text" placeholder ="Select..."class="form-control" id="pwd" data-health-score>      
-                  </select>
-              
+            </div>    
+                <br>
+            <div id="inputs" class="d-inline-flex flex-column align-items-center">
+                <div class="form-group">
+                    <label for="usr">Zip Code:</label>
+                    <input type="text" class="form-control" id="usr" placeholder="Zip Code..." data-address-input>
+                </div>
+                    <!-- insert "m" logo in between inputs -->
+    
+                <div class="form-group">
+                    <label for="pwd">Minimum Acceptable Score:</label>
+                    <!-- add a dropdown menu -->
+                    <select type="text" placeholder ="Select..."class="form-control" id="pwd" data-health-score>      
+                    </select>
+            </div>  
               <br>
               <!-- Move this button to a better spot -->
-              <button type="submit" style="width:100%" data-submit>Submit</button>
+              <button type="submit" class ="borderRadiusNormal" style="width:95%; border-radius:6%;" data-submit>Submit</button>
             </div>
-            </div>
-        </div>
-</div>
 
-    <br>
-    <br>
+            <!-- Get this image to appear as a backgroun for the content above -->
+            <!-- <div class="backgroundContainer blurred-image">
+            <img src="images/carrots-food-fresh-616404.jpg" style="width:100%">
+            </div> -->
+        </div>
+        </div>
+        </div>
+
+        <div class="col-lg-8 col-md-8" style="padding:0;">
+            <div class="container-fluid center" style="padding:0">
+                <div style="width:100%;">
+                <br>
+            
+                <p class="infoButtons" style="border-radius:30%">
+                    <!-- link to a second page about us -->
+                    <a href = "author.html"> <button type="button" class ="borderRadiusNormal boxShadow btn btn-default btn-sm;" >Authors</button></a>
+
+                    
+                    <i class="fas fa-bug"></i>
+                    
+
+                    <a href = "#"> <button type="button" class="borderRadiusNormal boxShadow btn btn-default btn-sm;">More Information</button></a>
+                </p>
+        
+        <!-- height should change when the Offenders Table is inserted dynamically -->
+                    <div id="googleMap" style="width:100%; height:70%;" class ="boxShadow" data-map>
+                    </div>
+                 </div>
+            </div>
+
+<br>
+<br>
 
     <div class="container-fluid">
         <div class="col-md-12 col-lg-12">
 
             <!-- get results to populate in this table -->
             <!-- make this table appear dynamically after input is recieved -->
-            <table class="table table-bordered table-striped table-hover">
-                <thead>
+            <table class="table table-striped table-hover">
+                <thead class="borderRadiusNormal">
                     <tr>
-                        <td class="text-center"colspan="12">Offenders</td>
+                        <td class="borderRadiusNormal text-center boxShadow tableHeadStyle"colspan="12">Offenders</td>
                     </tr>
                 </thead>
-                <tbody data-offender-table>
+                <tbody data-offender-table class="tableBodyStyle">
                     <!-- Sample of what will be injected by javascript -->
                     <!-- <tr>
                         <th class="col-md-3"></td>
@@ -101,29 +111,20 @@
             </table>
          </div>
     </div>
-    <!-- image container should be placed after the div below -->
-    </div>
-
-    <!-- image container -->
-    <!-- Possibly make these populate with images of the first 5 or so restaurants that show up on the list -->
-    <div class="col-lg-3 col-md-3 imageFit">
-       <a href="#"><img src="images/fivestar.jpeg" class="imageFit" alt="#1highest score"></a>
-       <a href="#"><img src="images/mcdonlads.jpeg" class="imageFit" alt="#2 highest score"></a>
-        <a href="#"><img src="images/oak-brewpub.jpg" class="imageFit" alt="#3 highest score"></a>
-        <a href="#"><img src="images/ocharleys.jpeg" class="imageFit" alt="#4 highest score"></a>
-    </div>
-
+</div>
 </div>
 
-    
 
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="scripts/counties.js"></script>
-    <script src="scripts/mapstyle.js"></script>
-    <script src="scripts/constants.js"></script>
-    <script src="scripts/index.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVR2uRZUFdke1dVJZbkwj3X1eUeN0PSCY&callback=initMap" async defer></script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="scripts/counties.js"></script>
+<script src="scripts/mapstyle.js"></script>
+<script src="scripts/constants.js"></script>
+<script src="scripts/index.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVR2uRZUFdke1dVJZbkwj3X1eUeN0PSCY&callback=initMap" async defer></script>
 </body>
 </html>

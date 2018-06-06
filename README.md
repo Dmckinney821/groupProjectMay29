@@ -27,7 +27,7 @@ Mysophobia is an application that allows you to filter out restaurants and hotel
 ### Home Screen
 Here is the home screen that users arrive at when launching the application
 <p align='center'>
-    <img src='groupProjectMay29/images/home.png'></img>
+    <img src='images/home.png'></img>
 </p>
 
 ### UI

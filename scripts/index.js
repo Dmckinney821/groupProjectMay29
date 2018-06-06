@@ -183,7 +183,6 @@ function submitRequest(event) {
   var minScore = $(MIN_SCORE).val();
   if (zipCode && minScore) {
     var results = getOffenders(zipCode, minScore);
-    console.log(results);
     if (results[0]){
       getGeocodeDataAndDoStuff(zipCode, drawMap);
       updateOffenderResults(results);
@@ -191,6 +190,8 @@ function submitRequest(event) {
       showNoResultsFound();
     }
   }
+var scroll = document.querySelector("#scrollHere") ;
+scroll.scrollIntoView(true);
 }
 
 function showNoResultsFound() {

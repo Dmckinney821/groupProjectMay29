@@ -19,11 +19,21 @@ body button {
     #backgroundImage {
         height: 10%;
 }
+@media screen and (max-width: 766px) {
+    .pre-scrollable{
+        overflow-y: unset;
+    }
+}
 
 .fill {
     min-height: 10vh;
     height: 20%;
 }
+}
+
+.pre-scrollable {
+   height:100%;
+   max-height: none;
 }
 
 
@@ -91,7 +101,11 @@ borderRadiusNormal {
 
 .leftSideStyle {
     padding-left: 0px; 
-}    
+}  
+
+.centerContent {
+    padding-top: 75px;
+}
 
 .fill {
     min-height: 100vh;

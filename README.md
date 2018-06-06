@@ -80,9 +80,9 @@ I was tasked with compiling the data and using local API's to gather the informa
 The desktop browser layout was the took some configuring but we are happy with the design. There was a lot of discussion on what to display in the two smaller standard responsive layouts. Did we want to show just the map? Did we want to show just a list? Would you be able to scroll even though it is our experience that on mobile scrolling on a map can be difficult. We ended up with a very pleasant design and layout that works for the UI & UX. 
 ### GeoLocate
 One of the functions we wanted to use was the GeoLocate API that allows the application to find your longitude and latitude based out you physical location. The following code was used to demonstrate the ability to implement this in the future:
-<p>
+
 ```javascript
-// This function uses the browser's built-in geolocation features
+This function uses the browser's built-in geolocation features
 function getCurrentLocation() {
   var position = navigator.geolocation;
   if (position) {
@@ -91,8 +91,7 @@ function getCurrentLocation() {
     console.log('"Geolocation is not supported by this browser.');
   }
 }
-
-// This function uses Google's Geolocation API
+``` This function uses Google's Geolocation API
 function getGeolocationDataAndDoStuff(stuffToDo) {
   const GEOLOCATION_BASE_URL = 'https://www.googleapis.com/geolocation/v1/geolocate?'
   $.get(GEOLOCATION_BASE_URL, {
@@ -103,12 +102,12 @@ function getGeolocationDataAndDoStuff(stuffToDo) {
     .catch(error => {
       console.log(error);
     });
-}
-</p>
+}```
+
 
 ### Google Places Autocomplete search
 Another of the functions of the website that we would like to use if we were to move forward with the application would be auto-complete address with partial data(i.e. 123 Spoo = 123 Spooner St Quahog, RI. Lisa was able to write the code for this but the GeoCode API was not working up to our standards. Below is the code:
-<p>
+
 ```javascript
 function getGeocodeDataAndDoStuff(address, stuffToDo, stuffYouNeed=null) {
   $.get(GEO_BASE_URL, {
@@ -123,8 +122,8 @@ function getGeocodeDataAndDoStuff(address, stuffToDo, stuffYouNeed=null) {
     .catch(error => {
       console.log(error);
   });
-}
-```
+}```
+
 
 ```javascript
 function createAddressSelectList(data) {
@@ -158,4 +157,4 @@ We have a list of features mentioned below that we would implement if we were to
 -Establish our own server to host the database of information. This would help if we were searching all of the establishments in the country as that amount of data being pulled from another server would lag the system.
 -Build our own API that could search for data on any site that displays sanitary conditions possibly even including Diablo's bastard child Yelp.
 
--
+

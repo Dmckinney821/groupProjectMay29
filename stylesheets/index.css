@@ -25,6 +25,12 @@ body button {
     }
 }
 
+@media (min-width: 576px){
+.container {
+    max-width: 100%;
+}
+}
+
 .fill {
     min-height: 10vh;
     height: 20%;

@@ -128,7 +128,8 @@ borderRadiusNormal {
     height: 100%;
     padding-left: 0px;
 
-    background-repeat: no-repeat;
+    background-size: 300%;
+    background-repeat: repeat;
     background-position: -400px -175px;
 
 }

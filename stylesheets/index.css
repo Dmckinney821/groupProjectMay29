@@ -108,16 +108,13 @@ borderRadiusNormal {
 .leftSideStyle {
     padding-left: 0px; 
 }  
-
 .centerContent {
     padding-top: 75px;
 }
-
 .fill {
     min-height: 100vh;
     height: 100%;
 }
-
 #backgroundImage {
     background-image: url("../images/bar1.jpg");
     
@@ -147,9 +144,7 @@ borderRadiusNormal {
     -o-filter: blur(1px);
     -ms-filter: blur(1px);
     filter: blur(1px);
-    
 }
-
 imageSize {
     height:100%;
     width:300px;
@@ -174,7 +169,6 @@ imageSize {
  .hideTable{
     display:none;
 }
-
 .tableHeadStyle {
     /* background-color: rgb(242, 252, 255);
     color: rgb(201, 184, 142); */
@@ -183,16 +177,15 @@ imageSize {
     text-shadow: -1px -1px rgb(151,128,118);
 
     border-radius: 4%;
-
 }
 tbody th {
     text-decoration: underline;
 }
-
 .tableBodyStyle {
     color: rgb(60,102,175);
     border-color: rgb(151,128,118);
 }
+
 
 /* Controls the size of the populated table sections */
 
@@ -217,10 +210,7 @@ tbody th {
 
     padding-left:9px;
     padding-top: 5px;
-
 }
-
-
 h1 {
     color: rgb(60,102,175);
     font-size: 165%;
@@ -229,15 +219,12 @@ h1 {
 #authors h1{
     text-align: center;
 }
-
 .authorHeaderStyle h1 {
     line-height: 1.5;
     color: white;
     font-size: 30px;
     text-decoration: none;
 }
-
-
 .imageContainer {
     width: 250px;
     height: 250px;
@@ -248,7 +235,6 @@ h1 {
     width: 100%;
     border-radius: 4%;
 }
-
 h1 .fa-bug {
     font-size: 41px;
     color: rgb(231, 212, 164);
@@ -267,19 +253,16 @@ button:hover {
     transform: scale(1.1);
     box-shadow: 0px 0px 2px white;
 }
-
 tbody tr:hover {
     box-shadow: 0px 2px 4px rgb(184, 208, 235);
     color: rgb(168, 146, 89);
 
     transform: scale(1.04);
 }
-
 button:hover {
     transform: scale(1.04);
     color: rgb(231, 212, 164);
 }
-
 #authors h1:hover{
     transform: scale(1.02);
     color: rgb(231, 212, 164);
@@ -300,10 +283,16 @@ button:hover {
     50%, 100% { transform: rotate(359deg); }
 }
 
+
+
+/* Animations */
 .spin {
     animation: spin 9s infinite ease-in;  
 }
 
+
+
+/* wtf is this */
 .info-window {
     margin: 5px;
     font-family: ‘Trebuchet MS’, ‘Lucida Sans Unicode’, ‘Lucida Grande’, ‘Lucida Sans’, Arial, sans-serif;
